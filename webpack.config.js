@@ -5,7 +5,7 @@ let HtmlWebpackPlugin=require('html-webpack-plugin');
 module.exports={
 	entry:"./app",
 	output:{
-		path:path.resolve(__dirname,'./build/'),
+		path:path.resolve(__dirname,'./build'),
 		filename:'bundle.js'
 	},
 	module:{
@@ -24,7 +24,10 @@ module.exports={
 			},{
 				loader:'css-loader'
 			}]
-		}]
+		},{
+				test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+				loader: "url-loader?limit=8192&name=img/[name].[hash:8].[ext]"
+     	}]
 	},
 	devServer:{
 		contentBase:"./",
