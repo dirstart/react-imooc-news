@@ -1,4 +1,5 @@
 let path=require('path');
+let HtmlWebpackPlugin=require('html-webpack-plugin');
 
 
 module.exports={
@@ -16,6 +17,13 @@ module.exports={
 			query:{
 				presets:["react","es2015"]
 			}
+		},{
+			test:/\.css$/,
+			use:[{
+				loader:'style-loader'
+			},{
+				loader:'css-loader'
+			}]
 		}]
 	},
 	devServer:{
@@ -24,5 +32,11 @@ module.exports={
 		inline:true,
 		// hot:true,
 		port:"8080"
-	}
+	},
+	plugins:[
+		new HtmlWebpackPlugin({
+			title:'Hello',
+			template:path.resolve(__dirname,'index.html')
+		})
+	]
 }
