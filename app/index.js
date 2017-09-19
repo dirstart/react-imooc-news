@@ -13,6 +13,7 @@ class Index extends React.Component{
 		return <div>
 			<PCHeader />
 			<div className="image-test"></div>
+			<img src="../static/45.jpg" />
 		</div>
 	}
 }

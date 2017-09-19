@@ -25,8 +25,8 @@ module.exports={
 				loader:'css-loader'
 			}]
 		},{
-				test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-				loader: "url-loader?limit=8192&name=img/[name].[hash:8].[ext]"
+			test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+			loader: "url-loader?limit=8192&name=img/[name].[hash:8].[ext]"
      	}]
 	},
 	devServer:{

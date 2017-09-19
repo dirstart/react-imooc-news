@@ -17,6 +17,7 @@
 .image-test{
 	width: 100px;
 	height: 100px;
-	background-image: url("../../static/1.jpg");
+	background-color: yellow;
+	background-image: url("../../static/3.jpg");
 	background-size: 100% 100%;
 }
