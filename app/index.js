@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PCHeader from './components/PCHeader.js';
-import 'antd/dist/antd.css';
+import MediaQuery from 'react-responsive';
 
+import MobileIndex from './components/MobileIndex';
+import PCIndex from './components/PCIndex';
+
+import 'antd/dist/antd.css';
 import './css/pc.css';
 
 class Index extends React.Component{
@@ -10,11 +13,16 @@ class Index extends React.Component{
 		super();
 	}
 	render(){
-		return <div>
-			<PCHeader />
-			<div className="image-test"></div>
-			<img src="../static/45.jpg" />
-		</div>
+		return (
+			<div>
+				<MediaQuery query='(min-device-width:1224px)'>
+					<PCIndex />
+				</MediaQuery>
+				<MediaQuery query='(max-device-width:1224px)'>
+					<MobileIndex />				
+				</MediaQuery>
+			</div>
+		)
 	}
 }
 
