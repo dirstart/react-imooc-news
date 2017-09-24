@@ -27,6 +27,15 @@ module.exports={
 		},{
 			test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
 			loader: "url-loader?limit=8192&name=img/[name].[hash:8].[ext]"
+     	},{
+     		test:/\.less$/,
+     		use:[{
+     			loader:'style-loader'
+     		},{
+     			loader:'css-loader'
+     		},{
+     			loader:'less-loader'
+     		}]
      	}]
 	},
 	devServer:{
