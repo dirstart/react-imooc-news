@@ -1,14 +1,20 @@
 import React from 'react';
-import { Row, Col, Menu, Icon } from 'antd';
+import { Row, Col } from 'antd';
+import {Menu,Icon,Tabs,Message,Form,Input,Button,CheckBox,Modal} from 'antd';
 
+const FormItem=Form.Item;
 const SubMenu=Menu.SubMenu;
+const TabPane=Tabs.TabPane;
 const MenuItemGroup=Menu.ItemGroup;
 
 export default class PCHeader extends React.Component {
     constructor() {
         super();
         this.state = {
-            current: 'top'
+            current: 'top',
+            hasLogined:false,
+            userNickName:'kurousaki',
+            modalVisible:true
         }
     }
 	
@@ -18,8 +24,22 @@ export default class PCHeader extends React.Component {
 			current:e.key,
 		})
 	}
+	handleSubmit(){
+
+	}
     render() {
-        return <header>
+    	// let {getFileProps} = this.props.form;
+    	const userShow=this.state.hasLogined ?
+	    	(<Menu.Item key="logout" className="register">
+	    		<Button type="primary" htmlType="button">
+	    			{this.state.userNickName}
+	    		</Button>
+	    	</Menu.Item>)
+	    	:
+	    	(<Menu.Item key="register" className="register">
+	    		<Icon type="appstore" />注册/登录
+	    	</Menu.Item>);
+        return (<header>
 				<Row>
 					<Col span={2}></Col>
 					<Col span={4}>
@@ -54,10 +74,29 @@ export default class PCHeader extends React.Component {
 							<Menu.Item key="shishang">
 								<Icon type="appstore"/>时尚
 							</Menu.Item>
+							{userShow}
+							<Modal title="用户中心" visible={this.state.modalVisible}>
+								<Tabs type="card">
+									<TabPane tab="注册" key="2">
+										<Form horizontal onSubmit={this.handleSubmit.bind(this)}>
+											<FormItem label="账户">
+												<input placeholder="请输入您的账号" />
+											</FormItem>
+											<FormItem label="密码">
+												<input placeholder="请输入您的密码" />
+											</FormItem>
+											<FormItem label="确认密码">
+												<input placeholder="请再次输入您的密码" />
+											</FormItem>
+										</Form>
+									</TabPane>
+								</Tabs>
+							</Modal>
 						</Menu>
+
 					</Col>
 					<Col span={2}></Col>
 				</Row>
-		</header>
+		</header>)
     }
 }
