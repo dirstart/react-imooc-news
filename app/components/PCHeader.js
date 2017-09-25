@@ -1,4 +1,8 @@
 import React from 'react';
+import  { BrowserRouter as StaticRouter, Router, Switch, Route, Link } from 'react-router-dom';
+import  createBrowserHistory from 'history/createBrowserHistory';
+const   customHistory = createBrowserHistory();
+
 import { Row, Col } from 'antd';
 import {Menu,Icon,Tabs,Message,Form,Input,Button,CheckBox,Modal} from 'antd';
 
@@ -7,14 +11,16 @@ const SubMenu=Menu.SubMenu;
 const TabPane=Tabs.TabPane;
 const MenuItemGroup=Menu.ItemGroup;
 
-export default class PCHeader extends React.Component {
+class PCHeader extends React.Component {
     constructor() {
         super();
         this.state = {
             current: 'top',
-            hasLogined:false,
+            hasLogined:true,
+            action:'login',
             userNickName:'kurousaki',
-            modalVisible:true
+            modalVisible:false,
+            userId:0
         }
     }
 	
@@ -28,12 +34,24 @@ export default class PCHeader extends React.Component {
 
 	}
     render() {
-    	// let {getFileProps} = this.props.form;
+    	const {getFieldProps} = this.props.form;  // 用于接收页面参数
     	const userShow=this.state.hasLogined ?
 	    	(<Menu.Item key="logout" className="register">
 	    		<Button type="primary" htmlType="button">
 	    			{this.state.userNickName}
 	    		</Button>
+	    		&nbsp;&nbsp;
+	    		{
+	    			<Button type="dashed" htmlType="button">
+						<Router history={customHistory}>
+					        <Link to="god">
+					            个人中心
+					        </Link>
+						</Router>
+					</Button>	
+		    	}
+	    		&nbsp;&nbsp;
+	    		<Button type="ghost" htmlType="button">退出</Button>
 	    	</Menu.Item>)
 	    	:
 	    	(<Menu.Item key="register" className="register">
@@ -100,3 +118,6 @@ export default class PCHeader extends React.Component {
 		</header>)
     }
 }
+
+export default PCHeader = Form.create({})(PCHeader);
+
