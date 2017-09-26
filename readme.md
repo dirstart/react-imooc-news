@@ -8,3 +8,23 @@
 `export default PCHeader = Form.create({})(PCHeader);`
 在render()之前，我们使用的  `let {getFieldProps} = this.props.from;`，这里报错，原因是没有加上上面的那句话。
 `Demo = Form.create({})(Demo)`,这里的`Form.create`方法会将 getFieldProps 添加到props上，必须先 Form.create
+
+#### 因为教程的版本是`react-router 1`所引起的问题，我使用的是最新的`react-router-dom v4`，遍寻搜索引擎，运气不错，找到了解决方案：`https://stackoverflow.com/questions/44499919/the-context-router-is-marked-as-required-in-link-but-its-value-is-undefine`
+> 大神写的解答Demo
+```
+import  { BrowserRouter as StaticRouter, Router, Switch, Route, Link } from 'react-router-dom';
+import  createBrowserHistory from 'history/createBrowserHistory';
+const   customHistory = createBrowserHistory();
+<!-- 此后的结构这样写 -->
+<Router history={customHistory}>
+    <div>
+        <Link to={'/.../' + linkName1}>
+            {itemName1}
+        </Link>
+        <Link to={'/.../' + linkName2}>
+            {itemName2}
+        </Link>
+    </div>
+</Router>
+```
+从中也理解了Link的结构，实际上就是我们平时用到的 a 标签，在这里还默认设置了其为block，若想要在配合antd的按钮还需要改成`inline-block`或者将其包在按钮里面也行。

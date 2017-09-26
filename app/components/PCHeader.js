@@ -11,30 +11,44 @@ const SubMenu=Menu.SubMenu;
 const TabPane=Tabs.TabPane;
 const MenuItemGroup=Menu.ItemGroup;
 
+const Home = () => (
+  <div>
+    <h2>Home</h2>
+  </div>
+)
 class PCHeader extends React.Component {
     constructor() {
         super();
         this.state = {
             current: 'top',
-            hasLogined:true,
+            hasLogined:false,
             action:'login',
             userNickName:'kurousaki',
-            modalVisible:false,
+            modalVisible:true,
             userId:0
         }
     }
-	
-	handleClick(e){
-		console.log('click',e);
+	setModalVisible(value){
 		this.setState({
-			current:e.key,
+			modalVisible:value
 		})
 	}
-	handleSubmit(){
+	handleClick(e){
+		if(e.key=="register"){
+			this.setState({current:'register'});
+			this.setModalVisible(true)
+		}else{
+			this.setState({
+				current:e.key,
+			})		
+		}
 
 	}
+	handleSubmit(){
+		console.log("test");
+	}
     render() {
-    	const {getFieldProps} = this.props.form;  // 用于接收页面参数
+    	const {getFieldDecorator} = this.props.form;  // 用于接收页面参数
     	const userShow=this.state.hasLogined ?
 	    	(<Menu.Item key="logout" className="register">
 	    		<Button type="primary" htmlType="button">
@@ -43,11 +57,13 @@ class PCHeader extends React.Component {
 	    		&nbsp;&nbsp;
 	    		{
 	    			<Button type="dashed" htmlType="button">
-						<Router history={customHistory}>
-					        <Link to="god">
-					            个人中心
-					        </Link>
-						</Router>
+						{
+							<Router history={customHistory}>
+						        <Link to="god">
+						            个人中心
+						        </Link>
+							</Router>
+						}
 					</Button>	
 		    	}
 	    		&nbsp;&nbsp;
@@ -93,19 +109,38 @@ class PCHeader extends React.Component {
 								<Icon type="appstore"/>时尚
 							</Menu.Item>
 							{userShow}
-							<Modal title="用户中心" visible={this.state.modalVisible}>
+							<Modal 
+								title="用户中心" 
+								wrapClassName="vertical-center-modal" 
+								visible={this.state.modalVisible}
+								onCancel={()=>this.setModalVisible(false)}
+								onOk={()=>this.setModalVisible(false)}
+								okText="关闭"
+							>
 								<Tabs type="card">
+									<TabPane tab="登录" key="1">
+										<Form horizontal onSubmit={this.handleSubmit.bind(this)}>
+											<FormItem label="账户">
+												<Input placeholder="请输入您的账号" {...getFieldDecorator('userName')}/>
+											</FormItem>
+											<FormItem label="密码">
+												<Input type="password" placeholder="请输入您的密码" {...getFieldDecorator('psd')}/>
+											</FormItem>
+											<Button type="primary" htmlType="submit">登录</Button>
+										</Form>
+									</TabPane>
 									<TabPane tab="注册" key="2">
 										<Form horizontal onSubmit={this.handleSubmit.bind(this)}>
 											<FormItem label="账户">
-												<input placeholder="请输入您的账号" />
+												<Input placeholder="请输入您的账号" {...getFieldDecorator('r_userName')}/>
 											</FormItem>
 											<FormItem label="密码">
-												<input placeholder="请输入您的密码" />
+												<Input  type="password" placeholder="请输入您的密码" {...getFieldDecorator('r_psd')} />
 											</FormItem>
 											<FormItem label="确认密码">
-												<input placeholder="请再次输入您的密码" />
+												<Input type="password"  placeholder="请再次输入您的密码" {...getFieldDecorator('r_psd_confirm')} />
 											</FormItem>
+											<Button type="submit" htmlType="submit">注册</Button>
 										</Form>
 									</TabPane>
 								</Tabs>
