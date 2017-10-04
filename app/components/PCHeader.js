@@ -68,18 +68,18 @@ class PCHeader extends React.Component {
 		message.success("请求成功！");
 		this.setModalVisible(false);
 	};
-	// callback(key) {
-	// 	if (key == 1) {
-	// 		this.setState({action: 'login'});
-	// 	} else if (key == 2) {
-	// 		this.setState({action: 'register'});
-	// 	}
-	// };
-	// logout(){
-	// 	localStorage.userid= '';
-	// 	localStorage.userNickName = '';
-	// 	this.setState({hasLogined:false});
-	// };
+	callback(key) {
+		if (key == 1) {
+			this.setState({action: 'login'});
+		} else if (key == 2) {
+			this.setState({action: 'register'});
+		}
+	};
+	logout(){
+		localStorage.userid= '';
+		localStorage.userNickName = '';
+		this.setState({hasLogined:false});
+	};
     render() {
     	const {getFieldProps, getFieldDecorator} = this.props.form;  // 用于接收页面参数
     	const userShow=this.state.hasLogined ?
@@ -100,7 +100,7 @@ class PCHeader extends React.Component {
 					</Button>	
 		    	}
 	    		&nbsp;&nbsp;
-	    		<Button type="ghost" htmlType="button">退出</Button>
+	    		<Button type="ghost" htmlType="button" onClick={this.logout.bind(this)}>退出</Button>
 	    	</Menu.Item>)
 	    	:
 	    	(<Menu.Item key="register" className="register">
@@ -150,7 +150,7 @@ class PCHeader extends React.Component {
 								onOk={()=>this.setModalVisible(false)}
 								okText="关闭"
 							>
-								<Tabs type="card">
+								<Tabs type="card" onChange={this.callback.bind(this)}>
 									<TabPane tab="登录" key="1">
 										<Form layout="horizontal" onSubmit={this.handleSubmit.bind(this)}>
 											<FormItem label="账户">
