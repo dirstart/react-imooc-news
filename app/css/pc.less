@@ -1,5 +1,5 @@
 // 很抱歉因为是学习，而且所学习的内容css实在是不太规范，为了节省时间这里就只好按照  ！第几次！  来划分css了
-//   first
+//   first  头部和底部的布局
 .logo{
 	align-items: center;
 	display: flex;
@@ -19,7 +19,7 @@
 	float: right !important;
 }
 
-//  second
+//  second  关于 !新闻块! 和旋转木马块的布局
 .container{
 	padding-top: 10px;
 	.left-container{
@@ -34,7 +34,7 @@
 			}
 		}
 	}
-	.tabs-news{
+	.tabs-news{  // 这个是旋转木马左边的新闻块
 		padding-left: 20px;
 		width:460px;
 		float: left;
@@ -50,10 +50,11 @@
 		}
 	}
 }
-.top-news-list{
+.top-news-list{    // 这个是所有的新闻块布局, 包块 1.图标标题类新闻 2.卡片式全文字新闻
 	float: left;
 	text-align: left;
 	font-size: 14px;
+	margin-top: 10px;
 	margin-bottom: 10px;
 	a{
 	    line-height: 22px !important;
@@ -63,6 +64,9 @@
 
 // --------------                  image-block start
 // 覆盖
+.ant-tabs-bar{
+	margin-bottom: 0;
+}
 div.ant-card-body{
 	padding: 10px;
 	// text-align: left !important;
