@@ -1,18 +1,17 @@
+// 很抱歉因为是学习，而且所学习的内容css实在是不太规范，为了节省时间这里就只好按照  ！第几次！  来划分css了
+//   first
 .logo{
-  align-items: center;
-  display: flex;
+	align-items: center;
+	display: flex;
+	img{
+		width: 48px;
+		height: 48px; 	
+	}
+	span{
+		font-size: 24px;
+		padding-left: 5px;
+	}
 }
-
-.logo img{
-  width: 48px;
-  height: 48px;
-}
-
-.logo span{
-  font-size: 24px;
-  padding-left: 5px;
-}
-
 .footer{
 	text-align: center;
 }
@@ -20,34 +19,65 @@
 	float: right !important;
 }
 
+//  second
 .container{
 	padding-top: 10px;
 	.left-container{
 		width: 400px;
 		float: left;
-		background-color: #777;
 		.carousel{
 			float: left;
 			width: 400px;
-			background-color: #000;
-		}
-	}
-	.tabs-news{
-		padding-left: 10px;
-		width:460px;
-		float: left;
-
-		.top-news-list{
-			float: left;
-			text-align: left;
-			font-size: 14px;
-
-			a{
-			    line-height: 22px !important;
-   				color: #666 !important;
+			img{
+				width: 400px;
+				height: 260px;
 			}
 		}
 	}
+	.tabs-news{
+		padding-left: 20px;
+		width:460px;
+		float: left;
+
+		li{
+			height: 25px;
+			line-height: 25px;
+			font-size: 14px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			width: 417px;
+		}
+	}
+}
+.top-news-list{
+	float: left;
+	text-align: left;
+	font-size: 14px;
+	margin-bottom: 10px;
+	a{
+	    line-height: 22px !important;
+		color: #666 !important;
+	}
 }
 
-// antd 样式覆盖
+// --------------                  image-block start
+// 覆盖
+div.ant-card-body{
+	padding: 10px;
+	// text-align: left !important;
+}
+.image-block{
+	float: left;
+	padding: 5px;
+	.custom-card{
+		text-align: center;
+		h3{
+			font-size: 12px;
+		}
+		p{
+			color: #999;
+		}
+	}
+}
+// -----------                        image-block end

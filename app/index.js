@@ -6,6 +6,9 @@ import MobileIndex from './components/MobileIndex';
 import PCIndex from './components/PCIndex';
 
 import 'antd/dist/antd.css';
+import "./css/pc.less";
+import "./css/mobile.less";
+
 class Index extends React.Component{
 	constructor(){
 		super();

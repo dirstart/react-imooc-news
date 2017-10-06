@@ -1,7 +1,6 @@
 import React from 'react';
 import MobileHeader from './MobileHeader';
 import MobileFooter from './MobileFooter';
-import "../css/mobile.less";
 
 import {Tabs} from 'antd';
 const TabPane=Tabs.TabPane;
