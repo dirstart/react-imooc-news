@@ -33,3 +33,14 @@ const   customHistory = createBrowserHistory();
 > div.ant-card-body和 .ant-card-body的优先级。这次的问题主要在于自己非常想要覆盖掉antd 的原样式，结果一直出问题（我笨以为在上周自己的实习工作中已经覆盖了无数的antd样式了，以为是轻而易举的），结果自己使用了半天，顺序也换了好多次，结果是优先级上出了问题。后来居上也是没用的。
 
 #### 我实在受不了这个课程的css的写法了，简直只能用凌乱这一说法了，虽然很感谢作者的分享，不过这个课程的css真是没法让人认真对待，还不如自己写呢哈哈。这个糟糕的让人吐槽的css的写法啊。
+
+
+#### 关于手机端的网页又出现了问题，不能垂直居中的问题，明明设置了height和line-height为一模一样了。
+> 时间原因，我选择了妥协，这次我先用padding带过了。
+
+#### 关于多行文本显示省略号的问题
+> 答案如下： 
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 3;
+overflow: hidden;
